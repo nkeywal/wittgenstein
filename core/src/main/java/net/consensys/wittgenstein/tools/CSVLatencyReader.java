@@ -358,9 +358,8 @@ public class CSVLatencyReader {
   }
 
   private InputStream resolvePath(String city) {
-    // return DATA_PATH.resolve(city).resolve(city + CSV_FILE_SUFFIX);
-    String name =
-        File.separator + DIR_NAME + File.separator + city + File.separator + city + CSV_FILE_SUFFIX;
+    // It's a resource stream, so we must use "/" instead of File.separator
+    String name = "/" + DIR_NAME + "/" + city + "/" + city + CSV_FILE_SUFFIX;
     InputStream is = getClass().getResourceAsStream(name);
     if (is == null) {
       throw new IllegalArgumentException("Can't find the file for " + city + " in " + name);
